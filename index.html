@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuminarBOT</title>
+    <link rel="stylesheet" href="./styleing.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cde6d52efd.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="panel-heading text-center" 
+    style="background-color:#ffff;color:#6d1d8e;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSABt4jiK60zHwTop8NO8l5y9hFdZuXl0crK7Vd0Sa-NCONoSFj7eGHAWs_l95FjbvwAbA&usqp=CAU"
+    style="width: 25px; border: transparent; border-radius: 50%;">
+        <strong>LuminarBOT - Talk with Me !!!</strong>
+        <hr>
+    </div>
+  
+    <div class="chat-wrapper" >
+        <div class="chat-container">
+            <div class="panel panel-info" style="border:transparent;">
+                <div class="panel-body fixed-panel">
+                    <ul class="media-list" id="chat-box">
+                        <li class="media">
+                            <div class="media-body">
+                                <div class="media">
+                                    <div class="bot-message" style="width:250px;background-color: #6d1d8e; color: #ffff; border: transparent; border-radius:8px 8px 8px 0px; padding: 4px;">Hello! How can I help you today?</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <form id="chat-form">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter Message" id="user-input" autofocus/>
+                            <span class="input-group-btn">
+                                <button class="btn fw-bold" type="submit" id="chatbot-form-btn" style="background-color: #6d1d8e; color: #ffff;">
+                                    <i class="fa-regular fa-paper-plane"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            $('#chat-form').submit(function(e) {
+                e.preventDefault();
+                var userInput = $('#user-input').val();
+                var chatBox = $('#chat-box');
+                if (userInput.trim() !== '') {
+                    chatBox.append(`<li class="media">
+                        <div class="media-body">
+                            <div class="media"  style="display:flex;align-items:end;margin-bottom:10px;">
+                                <div class="user-message" style="background-color: #ededed; color: black; border-radius: 8px 8px 0px 8px; padding: 8px; max-width: 80%; display: inline-block; text-align: right; margin-left: auto;">${userInput}</div>
+                                <i class="fa-solid fa-user" style="margin-left:4px;color:#6d1d8e;"></i>
+                            </div>
+                        </div>
+                    </li>`);
+                    $('#user-input').val('');
+                    $.ajax({
+                        type: "POST",
+                        url: "/send_message",
+                        contentType: "application/json",
+                        data: JSON.stringify({ message: userInput }),
+                        success: function(response) {
+                            chatBox.append(`
+                            <li class="media" style="justify-content: flex-start; display: flex; align-items: center; margin-bottom: 10px;">
+                               <i class="fa-solid fa-robot fa-bounce" style="margin-right:4px;color:#6d1d8e;"></i>
+                                <div class="media-body">
+                                    <div class="media">
+                                        <div class="bot-message" style="background-color: #6d1d8e; color: white; border: transparent; border-radius: 8px 8px 8px 0px; padding: 8px; max-width: 80%; display: inline-block;">${response.response}</div>
+                                    </div>
+                                </div>
+                            </li>`);
+                            $(".fixed-panel").scrollTop($(".fixed-panel")[0].scrollHeight);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

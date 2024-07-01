@@ -1,0 +1,32 @@
+version: "3.1"
+
+stories:
+- story: greet path
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- story: ask_courses path
+  steps:
+    - intent: ask_courses
+    - action: utter_courses
+
+- story: ask_admission path
+  steps:
+    - intent: ask_admission
+    - action: utter_admission
+
+- story: ask_fees path
+  steps:
+    - intent: ask_fees
+    - action: utter_fees
+
+- story: ask_location path
+  steps:
+    - intent: ask_location
+    - action: utter_location
+
+- story: goodbye path
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye

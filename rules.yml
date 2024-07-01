@@ -1,0 +1,38 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
+
+- rule: greet rule
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- rule: course inquiry rule
+  steps:
+    - intent: ask_courses
+    - action: utter_courses
+
+- rule: admission inquiry rule
+  steps:
+    - intent: ask_admission
+    - action: utter_admission
+
+- rule: fee inquiry rule
+  steps:
+    - intent: ask_fees
+    - action: utter_fees
+
+- rule: location inquiry rule
+  steps:
+    - intent: ask_location
+    - action: utter_location

@@ -1,0 +1,74 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hello
+      - hi
+      - hey
+      - good morning
+      - good evening
+      - hey there
+      - hi there
+
+  - intent: goodbye
+    examples: |
+      - bye
+      - goodbye
+      - see you later
+      - have a nice day
+      - talk to you later
+      - see you
+      - take care
+
+  - intent: ask_courses
+    examples: |
+      - what courses do you offer?
+      - tell me about your courses
+      - available courses
+      - course list
+      - what are the courses available at Luminar Technolab?
+      - can you list your courses?
+      - what programs do you have?
+      - I want to know about your courses
+      - list of courses
+      - course name
+      - courses
+
+  - intent: ask_admission
+    examples: |
+      - how do I apply?
+      - admission process
+      - how to get admitted?
+      - enrollment procedure
+      - how can I enroll in a course?
+      - what is the process to join a course?
+      - how to get admission?
+      - admission requirements
+
+  - intent: ask_location
+    examples: |
+      - where are you located?
+      - what is your address?
+      - location of Luminar Technolab
+      - where can I find Luminar Technolab?
+      - where is Luminar Technolab situated?
+      - where is your office?
+      - tell me your location
+      - I want to know your address
+      - office location
+      - company address
+      - location
+
+  - intent: ask_fees
+    examples: |
+      - what is the fee structure?
+      - tell me about the fees
+      - how much are the fees?
+      - what are the charges for the courses?
+      - fee details
+      - what is the cost of the courses?
+      - how much do the courses cost?
+      - can you explain the fee structure?
+      - tuition fees
+      - what are the fees involved?
